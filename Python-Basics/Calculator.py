@@ -25,9 +25,9 @@ while True:
                 print("\t\t\tGood Bye...\n")
                 exit()
             else:
-                print("Wrong input. Please enter a Number from 1 to 5.")
+                print("Wrong input. Please enter a Number from 1 to 5.\n")
         except ValueError:
-            print("Wrong input. Please enter a Number.")
+            print("Wrong input. Please enter a Number.\n")
 
     # if 0 < opt < 6:        REDUNDANT CHECK
     while True:
@@ -36,7 +36,7 @@ while True:
             num2 = float(input("Second Number: "))
             break
         except ValueError:
-            print("Wrong input. Please enter a Number.")
+            print("Wrong input. Please enter a Number.\n")
 
     if opt == 1:
         print("\t\t\tAdd\n")
