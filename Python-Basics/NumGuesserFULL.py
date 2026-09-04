@@ -4,7 +4,7 @@ import platform
 import random
 import subprocess
 
-# import time
+import time
 
 result_number = 0
 result_memory = 0
@@ -12,10 +12,8 @@ result_memory = 0
 
 def clear():
     if platform.system() == "Windows":
-        # time.sleep(2)
         subprocess.run('cls', shell=True)
     else:
-        # time.sleep(2)
         subprocess.run('clear', shell=True)
 
 
@@ -77,7 +75,7 @@ def guess_memory():
     while lives != 0:
         print(f"\t\t\t Current Level: {level}")
         print(f" Your number is: {number_memory}")
-        # time.sleep(2)
+        time.sleep(2)
         clear()
         user_guess = get_integer(f"What is the number?: ")
         if user_guess != number_memory:
@@ -97,6 +95,7 @@ def guess_memory():
 
 
 def menu_option(choice):
+    clear()
     if choice == 1:
         guess_number()
     elif choice == 2:
@@ -128,6 +127,7 @@ def main():
         go_back = input("\n\t\t Go back to Menu (y/n): ")
         if go_back.lower() != "y":
             exit()
+        clear()
 
 
 main()
