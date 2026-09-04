@@ -10,6 +10,15 @@ result_number = 0
 result_memory = 0
 
 
+def main():
+    while True:
+        menu()
+        go_back = input("\n\t\t Go back to Menu (y/n): ")
+        if go_back.lower() != "y":
+            exit()
+        clear()
+
+
 def clear():
     if platform.system() == "Windows":
         subprocess.run('cls', shell=True)
@@ -36,6 +45,34 @@ def menu():
     menu_option(get_integer("\nEnter your Choice: "))
 
 
+def menu_option(choice):
+    clear()
+    if choice == 1:
+        guess_number()
+    elif choice == 2:
+        guess_memory(5)
+    elif choice == 3:
+        how_to_play()
+    elif choice == 4:
+        high_score(result_memory, result_number)
+    elif choice == 5:
+        exit()
+    else:
+        print("\t Invalid Choice. Enter the correct choice.")
+
+
+def difficulty_time(difficulty, get_seconds):
+    if difficulty % 5 == 0:
+        if get_seconds > 1:
+            get_seconds -= 1
+            if get_seconds <= 1:
+                get_seconds = 1
+            print(f"\t\t\t Difficulty increased!")
+            print(f"Time limit to memorize changed to {get_seconds} Seconds...")
+
+    return get_seconds
+
+
 def guess_number():
     global result_number  # Need to be declared again as 'global' variable in function
     print("\t\t 1. Guessing Game\n")
@@ -57,26 +94,21 @@ def guess_number():
             return attempts
 
 
-def how_to_play():
-    print("\t 1. Guessing Game")
-    print("\t\t>> This mode is simple you have to guess the correct number")
-    print("\t\t   with the least amount of attempts")
-    print("\t 2. Memory Game")
-    print("\t\t>> This game mode tests your memory by giving you a")
-    print("\t\t   larger number with each correct guess.")
-
-
-def guess_memory():
+def guess_memory(seconds):
     global result_memory  # Need to be declared again as 'global' variable in function
     print("\t\t 2. Memory Game\n")
     number_memory = random.randint(1, 9)
-    level = 1
+    level = 4
     lives = 3
     while lives != 0:
         print(f"\t\t\t Current Level: {level}")
         print(f" Your number is: {number_memory}")
-        time.sleep(2)
+        seconds = difficulty_time(level, seconds)
+        if seconds < 0:
+            seconds = seconds * -1
+        time.sleep(seconds)
         clear()
+        print(f"{seconds} Seconds")
         user_guess = get_integer(f"What is the number?: ")
         if user_guess != number_memory:
             print(f" Wrong Answer. Try again...")
@@ -87,27 +119,20 @@ def guess_memory():
             new_digit = random.randint(0, 9)
             number_memory = number_memory * 10 + new_digit
             level = level + 1
-        print(f" You lost. Your highest Level is {level - 1}")
-
+    print(f" You lost. Your highest Level is {level - 1}")
     if result_memory == 0 or level - 1 > result_memory:
         result_memory = level - 1
+
     return level - 1
 
 
-def menu_option(choice):
-    clear()
-    if choice == 1:
-        guess_number()
-    elif choice == 2:
-        guess_memory()
-    elif choice == 3:
-        how_to_play()
-    elif choice == 4:
-        high_score(result_memory, result_number)
-    elif choice == 5:
-        exit()
-    else:
-        print("\t Invalid Choice. Enter the correct choice.")
+def how_to_play():
+    print("\t 1. Guessing Game")
+    print("\t\t>> This mode is simple you have to guess the correct number")
+    print("\t\t   with the least amount of attempts")
+    print("\t 2. Memory Game")
+    print("\t\t>> This game mode tests your memory by giving you a")
+    print("\t\t   larger number with each correct guess.")
 
 
 def high_score(high_memory, high_number):
@@ -119,15 +144,6 @@ def high_score(high_memory, high_number):
     print(f"\t Your high score for Memory Game is Level {high_memory}")
 
     print("NOTICE: High Score will reset to 0 once the program is closed")
-
-
-def main():
-    while True:
-        menu()
-        go_back = input("\n\t\t Go back to Menu (y/n): ")
-        if go_back.lower() != "y":
-            exit()
-        clear()
 
 
 main()
