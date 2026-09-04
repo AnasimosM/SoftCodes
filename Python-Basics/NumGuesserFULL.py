@@ -44,7 +44,7 @@ def guess_number():
     random_number = random.randint(1, 6)
     attempts = 0
     while True:
-        attempts += 10
+        attempts += 1
         user_guess = get_integer(f"Enter your Choice: ")
         if user_guess < random_number:
             print(f"You Guessed too Low. Try Higher")
@@ -78,15 +78,20 @@ def guess_memory():
         # time.sleep(2)
         clear()
         user_guess = get_integer(f"What is the number?: ")
+        print(f"\t\t\t Current Level: {level}")
         if user_guess != number_memory:
             print(f" Wrong Answer. Try again...")
+            # print(f"\t\t Level is {level}")       DEBUG CHECK CODE
             lives -= 1
-        else:
+        elif user_guess == number_memory:
             print(f"You Guessed Correctly! The correct guess is {number_memory}")
-            level += 1
             new_digit = random.randint(0, 9)
             number_memory = number_memory * 10 + new_digit
-    print(f" You lost. Your highest Level is {level - 1}")
+            level = level + 1
+    if result_memory == 0 or level < result_memory:
+        result_memory = level
+    else:
+        print(f" You lost. Your highest Level is {level - 1}")
 
 
 def menu_option(choice):
@@ -115,8 +120,12 @@ def high_score():
     print("Info: High Score will reset to 0 once the program is closed")
 
 
-while True:
-    menu()
-    go_back = input("\n\t\t Go back to Menu (y/n): ")
-    if go_back.lower() != "y":
-        exit()
+def main():
+    while True:
+        menu()
+        go_back = input("\n\t\t Go back to Menu (y/n): ")
+        if go_back.lower() != "y":
+            exit()
+
+
+main()
