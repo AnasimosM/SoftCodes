@@ -6,13 +6,13 @@ Fully Furnished and Finished Programs
 [![Modification](https://img.shields.io/badge/Modification-Not%20Allowed-critical.svg)](LICENSE)
 [![Commercial](https://img.shields.io/badge/Commercial-Permission%20Required-orange.svg)](LICENSE)
 
-Software developed by **Anasimos Mesfin Kebede** ([@AnasimosM](https://github.com/AnasimosM))
+Software developed by **AnasimosM** ([Github](https://github.com/AnasimosM))
 
 ---
 
 ## 📜 License & Terms of Use — ALL RIGHTS RESERVED
 
-**© 2026 Anasimos Mesfin Kebede. All Rights Reserved.**
+**© 2026 AnasimosM. All Rights Reserved.**
 
 > ⚠️ **IMPORTANT NOTICE:**  
 > This project is **PROPRIETARY (Source-Available for Portfolio/Evaluation Only)**.  
@@ -36,7 +36,7 @@ Software developed by **Anasimos Mesfin Kebede** ([@AnasimosM](https://github.co
 
 To request permission to run this software, or to purchase a commercial license:
 
-📧 **Email:** `anasimosmesmesfinkebede@gmail.com`  
+📧 **Email:** `anasimosm.singularityhorizon@gmail.com`  
 Please include:
 1. Your Name / Organization
 2. Intended use case (personal, or commercial)
