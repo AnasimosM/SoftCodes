@@ -4,11 +4,10 @@ import platform
 import random
 import subprocess
 
-
 # import time
-#
-# result_number = 0
-# result_memory = 0
+
+result_number = 0
+result_memory = 0
 
 
 def clear():
@@ -40,7 +39,7 @@ def menu():
 
 
 def guess_number():
-    # global result_number  # Need to be declared again as 'global' variable in function
+    global result_number  # Need to be declared again as 'global' variable in function
     print("\t\t 1. Guessing Game\n")
     random_number = random.randint(1, 6)
     attempts = 0
@@ -50,12 +49,13 @@ def guess_number():
         if user_guess < random_number:
             print(f"You Guessed too Low. Try Higher")
         elif user_guess > random_number:
-            print(f"You Guessed too Higher. Try Lower")
+            print(f"You Guessed too High. Try Lower")
         else:
             print(f"You Guessed Correctly!")
             print(f"The correct guess is {random_number}")
-            # if result_number == 0 or attempts < result_number:
-            #     result_number = attempts
+            print(f"You took {attempts} attempts to guess the correct number.")
+            if result_number == 0 or attempts > result_number:
+                result_number = attempts
             return attempts
 
 
@@ -69,17 +69,17 @@ def how_to_play():
 
 
 def guess_memory():
-    # global result_memory  # Need to be declared again as 'global' variable in function
+    global result_memory  # Need to be declared again as 'global' variable in function
     print("\t\t 2. Memory Game\n")
     number_memory = random.randint(1, 9)
     level = 1
     lives = 3
     while lives != 0:
+        print(f"\t\t\t Current Level: {level}")
         print(f" Your number is: {number_memory}")
         # time.sleep(2)
         clear()
         user_guess = get_integer(f"What is the number?: ")
-        print(f"\t\t\t Current Level: {level}")
         if user_guess != number_memory:
             print(f" Wrong Answer. Try again...")
             # print(f"\t\t Level is {level}")       DEBUG CHECK CODE
@@ -89,10 +89,10 @@ def guess_memory():
             new_digit = random.randint(0, 9)
             number_memory = number_memory * 10 + new_digit
             level = level + 1
-    # if result_memory == 0 or level < result_memory:
-    #     result_memory = level
-    else:
         print(f" You lost. Your highest Level is {level - 1}")
+
+    if result_memory == 0 or level - 1 > result_memory:
+        result_memory = level - 1
     return level - 1
 
 
@@ -104,22 +104,22 @@ def menu_option(choice):
     elif choice == 3:
         how_to_play()
     elif choice == 4:
-        high_score()
+        high_score(result_memory, result_number)
     elif choice == 5:
         exit()
     else:
         print("\t Invalid Choice. Enter the correct choice.")
 
 
-def high_score(result_memory, result_number):
+def high_score(high_memory, high_number):
     # result_memory = guess_memory()        #These can run the game again, so make them
     # result_number = guess_number()        # a global variables instead
 
     print("\t\t\t 4.High Score")
-    print(f"\t Your high score for Guessing Game is {result_number}")
-    print(f"\t Your high score for Memory Game is Level {result_memory}")
+    print(f"\t Your best score for Guessing Game is {high_number} attempts")
+    print(f"\t Your high score for Memory Game is Level {high_memory}")
 
-    print("Info: High Score will reset to 0 once the program is closed")
+    print("NOTICE: High Score will reset to 0 once the program is closed")
 
 
 def main():
