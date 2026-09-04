@@ -4,10 +4,11 @@ import platform
 import random
 import subprocess
 
-# import time
 
-result_number = 0
-result_memory = 0
+# import time
+#
+# result_number = 0
+# result_memory = 0
 
 
 def clear():
@@ -39,7 +40,7 @@ def menu():
 
 
 def guess_number():
-    global result_number  # Need to be declared again as 'global' variable in function
+    # global result_number  # Need to be declared again as 'global' variable in function
     print("\t\t 1. Guessing Game\n")
     random_number = random.randint(1, 6)
     attempts = 0
@@ -53,9 +54,9 @@ def guess_number():
         else:
             print(f"You Guessed Correctly!")
             print(f"The correct guess is {random_number}")
-            if result_number == 0 or attempts < result_number:
-                result_number = attempts
-            break
+            # if result_number == 0 or attempts < result_number:
+            #     result_number = attempts
+            return attempts
 
 
 def how_to_play():
@@ -68,7 +69,7 @@ def how_to_play():
 
 
 def guess_memory():
-    global result_memory  # Need to be declared again as 'global' variable in function
+    # global result_memory  # Need to be declared again as 'global' variable in function
     print("\t\t 2. Memory Game\n")
     number_memory = random.randint(1, 9)
     level = 1
@@ -88,10 +89,11 @@ def guess_memory():
             new_digit = random.randint(0, 9)
             number_memory = number_memory * 10 + new_digit
             level = level + 1
-    if result_memory == 0 or level < result_memory:
-        result_memory = level
+    # if result_memory == 0 or level < result_memory:
+    #     result_memory = level
     else:
         print(f" You lost. Your highest Level is {level - 1}")
+    return level - 1
 
 
 def menu_option(choice):
@@ -109,7 +111,7 @@ def menu_option(choice):
         print("\t Invalid Choice. Enter the correct choice.")
 
 
-def high_score():
+def high_score(result_memory, result_number):
     # result_memory = guess_memory()        #These can run the game again, so make them
     # result_number = guess_number()        # a global variables instead
 
