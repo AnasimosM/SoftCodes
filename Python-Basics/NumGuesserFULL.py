@@ -72,6 +72,14 @@ def difficulty_time(difficulty, get_seconds):
 
     return get_seconds
 
+def level_difficulty(rank_min,rank_max):
+    print("\t\t 1. Easy Level")
+    print("\t\t 2. Medium Level")
+    print("\t\t 3. Hard Level")
+    print("\t\t 4. Impossible Level")
+    print("\t\t Select level difficulty: ")
+
+
 
 def guess_number():
     global result_number  # Need to be declared again as 'global' variable in function
