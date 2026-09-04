@@ -4,7 +4,6 @@
 import platform
 import random
 import subprocess
-
 import time
 
 result_number = 0
