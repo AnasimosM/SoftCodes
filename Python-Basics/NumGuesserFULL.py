@@ -1,6 +1,5 @@
 # Number Guessing Game (Complete with functions and other python features)
 # Page 3 LC3.1
-
 import platform
 import random
 import subprocess
@@ -8,7 +7,6 @@ import time
 
 result_number = 0
 result_memory = 0
-lives = 3
 
 
 def main():
@@ -17,10 +15,11 @@ def main():
         go_back = input("\n\t\t Go back to Menu (y/n): ")
         if go_back.lower() != "y":
             exit()
-        clear()
+        clear(0)
 
 
-def clear():
+def clear(value):
+    time.sleep(value)
     if platform.system() == "Windows":
         subprocess.run('cls', shell=True)
     else:
@@ -36,7 +35,6 @@ def get_integer(prompt):
 
 
 def menu():
-    global lives
     print("\n\t\t\t The Numbers Game")
     print("\t 1. Guessing Game")
     print("\t 2. Memory Game")
@@ -48,7 +46,7 @@ def menu():
 
 
 def menu_option(choice):
-    clear()
+    clear(0)
     if choice == 1:
         guess_number()
     elif choice == 2:
@@ -82,54 +80,50 @@ class DifficultyManager:
 
 def guess_number(rank_max=5):
     global result_number  # Need to be declared again as 'global' variable in function
-    global lives
+    user_guess = None
     print("\t\t 1. Guessing Game\n")
     guess_level = 1
     attempts = 0
     while True:
-        while lives > 0:
+        while True:
             random_number = random.randint(1, rank_max)
-            print(f"\t\t Current Level: {guess_level} and number is {random_number}")
-            print(f"\t\t Rank_MAX: {rank_max}")
+            print(f"\t\t Current Level: {guess_level} ")  # and number is {random_number}
+            print(f" Hidden number is between 1 and {rank_max}")
             attempts += 1
             user_guess = get_integer(f"Enter your Guess: ")
             if user_guess < random_number:
                 print(f"You Guessed too Low. Try Higher")
-                lives -= 1
+                clear(2)
             elif user_guess > random_number:
                 print(f"You Guessed too High. Try Lower")
-                lives -= 1
+                clear(2)
             else:
                 print(f"You Guessed Correctly!")
                 print(f"The correct guess is {random_number}")
-                print(f"You Lost. Your highest Level is {guess_level - 1}")
                 print(f"You took {attempts} attempts to guess the correct number.")
                 rank_max = rank_max * 2
                 if result_number == 0 or guess_level > result_number:
                     result_number = guess_level
-
+                print(f"Your highest Level is {guess_level - 1}")
                 guess_level += 1
                 attempts = 0
-        lives = 3
-        return guess_level
 
 
 def guess_memory(seconds):
     global result_memory  # Need to be declared again as 'global' variable in function
-    global lives
+    lives = 3
     print("\t\t 2. Memory Game\n")
     number_memory = random.randint(1, 9)
     level = 1
+    difficulty_manager = DifficultyManager()
     while lives > 0:
         print(f"\t\t\t Current Level: {level}")
         print(f" Your number is: {number_memory}")
-        difficulty_manager = DifficultyManager()
         seconds = difficulty_manager.difficulty_time(level, seconds)
-        if seconds < 0:
-            seconds = seconds * -1
-        time.sleep(seconds)
-        clear()
-        # print(f"{seconds} Seconds")           DEBUG CHECK CODE
+        clear(seconds)
+        print(f"\t\t\t❤️ {lives} Lives")
+
+        # print(f"{seconds} Seconds")  # DEBUG CHECK CODE
         user_guess = get_integer(f"Enter your Guess: ")
 
         if user_guess != number_memory:
@@ -144,7 +138,6 @@ def guess_memory(seconds):
     print(f" You lost. Your highest Level is {level - 1}")
     if result_memory == 0 or level - 1 > result_memory:
         result_memory = level - 1
-
     return level - 1
 
 
@@ -154,7 +147,7 @@ def how_to_play():
     print("\t\t   with the least amount of attempts")
     print("\t 2. Memory Game")
     print("\t\t>> This game mode tests your memory by giving you a")
-    print("\t\t   larger number with each correct guess.")
+    print("\t\t   larger number with each correct guess. ")
 
 
 def high_score(high_memory, high_number):
