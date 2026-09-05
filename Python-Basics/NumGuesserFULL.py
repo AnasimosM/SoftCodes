@@ -8,6 +8,7 @@ import time
 
 result_number = 0
 result_memory = 0
+lives = 3
 
 
 def main():
@@ -35,6 +36,7 @@ def get_integer(prompt):
 
 
 def menu():
+    global lives
     print("\n\t\t\t The Numbers Game")
     print("\t 1. Guessing Game")
     print("\t 2. Memory Game")
@@ -61,63 +63,75 @@ def menu_option(choice):
         print("\t Invalid Choice. Enter the correct choice.")
 
 
-def difficulty_time(difficulty, get_seconds):
-    if difficulty % 5 == 0:
-        if get_seconds > 1:
-            get_seconds -= 1
-            if get_seconds <= 1:
-                get_seconds = 1
-            print(f"\t\t\t Difficulty increased!")
-            print(f"Time limit to memorize changed to {get_seconds} Seconds...")
+class DifficultyManager:
+    def __init__(self):
+        self.last_difficulty_level = 0
 
-    return get_seconds
+    def difficulty_time(self, difficulty, get_seconds):
+        if difficulty % 5 == 0 and difficulty != self.last_difficulty_level:
+            self.last_difficulty_level = difficulty
+            if get_seconds > 1:
+                get_seconds -= 1
+                if get_seconds <= 1:
+                    get_seconds = 1
+                print(f"\t\t\t Difficulty increased!")
+                print(f"Time limit to memorize changed to {get_seconds} Seconds...")
 
-def level_difficulty(rank_min,rank_max):
-    print("\t\t 1. Easy Level")
-    print("\t\t 2. Medium Level")
-    print("\t\t 3. Hard Level")
-    print("\t\t 4. Impossible Level")
-    print("\t\t Select level difficulty: ")
+        return get_seconds
 
 
-
-def guess_number():
+def guess_number(rank_max=5):
     global result_number  # Need to be declared again as 'global' variable in function
+    global lives
     print("\t\t 1. Guessing Game\n")
-    random_number = random.randint(1, 6)
+    guess_level = 1
     attempts = 0
     while True:
-        attempts += 1
-        user_guess = get_integer(f"Enter your Choice: ")
-        if user_guess < random_number:
-            print(f"You Guessed too Low. Try Higher")
-        elif user_guess > random_number:
-            print(f"You Guessed too High. Try Lower")
-        else:
-            print(f"You Guessed Correctly!")
-            print(f"The correct guess is {random_number}")
-            print(f"You took {attempts} attempts to guess the correct number.")
-            if result_number == 0 or attempts > result_number:
-                result_number = attempts
-            return attempts
+        while lives > 0:
+            random_number = random.randint(1, rank_max)
+            print(f"\t\t Current Level: {guess_level} and number is {random_number}")
+            print(f"\t\t Rank_MAX: {rank_max}")
+            attempts += 1
+            user_guess = get_integer(f"Enter your Guess: ")
+            if user_guess < random_number:
+                print(f"You Guessed too Low. Try Higher")
+                lives -= 1
+            elif user_guess > random_number:
+                print(f"You Guessed too High. Try Lower")
+                lives -= 1
+            else:
+                print(f"You Guessed Correctly!")
+                print(f"The correct guess is {random_number}")
+                print(f"You Lost. Your highest Level is {guess_level - 1}")
+                print(f"You took {attempts} attempts to guess the correct number.")
+                rank_max = rank_max * 2
+                if result_number == 0 or guess_level > result_number:
+                    result_number = guess_level
+
+                guess_level += 1
+                attempts = 0
+        lives = 3
+        return guess_level
 
 
 def guess_memory(seconds):
     global result_memory  # Need to be declared again as 'global' variable in function
+    global lives
     print("\t\t 2. Memory Game\n")
     number_memory = random.randint(1, 9)
-    level = 4
-    lives = 3
-    while lives != 0:
+    level = 1
+    while lives > 0:
         print(f"\t\t\t Current Level: {level}")
         print(f" Your number is: {number_memory}")
-        seconds = difficulty_time(level, seconds)
+        difficulty_manager = DifficultyManager()
+        seconds = difficulty_manager.difficulty_time(level, seconds)
         if seconds < 0:
             seconds = seconds * -1
         time.sleep(seconds)
         clear()
-        print(f"{seconds} Seconds")
-        user_guess = get_integer(f"What is the number?: ")
+        # print(f"{seconds} Seconds")           DEBUG CHECK CODE
+        user_guess = get_integer(f"Enter your Guess: ")
+
         if user_guess != number_memory:
             print(f" Wrong Answer. Try again...")
             # print(f"\t\t Level is {level}")       DEBUG CHECK CODE
@@ -148,7 +162,7 @@ def high_score(high_memory, high_number):
     # result_number = guess_number()        # a global variables instead
 
     print("\t\t\t 4.High Score")
-    print(f"\t Your best score for Guessing Game is {high_number} attempts")
+    print(f"\t Your high score for Guessing Game is Level {high_number}")
     print(f"\t Your high score for Memory Game is Level {high_memory}")
 
     print("NOTICE: High Score will reset to 0 once the program is closed")
