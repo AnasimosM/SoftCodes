@@ -34,6 +34,7 @@ def get_integer(prompt):
             print("\t Invalid Choice. Enter an Integer")
 
 
+
 def menu():
     print("\n\t\t\t The Numbers Game")
     print("\t 1. Guessing Game")
@@ -85,12 +86,24 @@ def guess_number(rank_max=5):
     guess_level = 1
     attempts = 0
     while True:
+        random_number = random.randint(1, rank_max)
+        print(f"\t\t Current Level: {guess_level} ")  # and number is {random_number}
+        print(f" Hidden number is between 1 and {rank_max}")
+        
         while True:
-            random_number = random.randint(1, rank_max)
-            print(f"\t\t Current Level: {guess_level} ")  # and number is {random_number}
-            print(f" Hidden number is between 1 and {rank_max}")
             attempts += 1
-            user_guess = get_integer(f"Enter your Guess: ")
+            if raw_input.lower() == 'q':
+                print("\n\t You chose to quit.")
+                guess_level -= 1  # Don't count unfinished level
+                break
+                
+            try:
+                user_guess = int(raw_input)
+            except ValueError:
+                print("\t Invalid input. Enter a number.")
+                attempts -= 1  # Don't count invalid input
+                continue
+                
             if user_guess < random_number:
                 print(f"You Guessed too Low. Try Higher")
                 clear(2)
