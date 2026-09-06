@@ -81,7 +81,6 @@ class DifficultyManager:
 
 def guess_number(rank_max=5):
     global result_number  # Need to be declared again as 'global' variable in function
-    user_guess = None
     print("\t\t 1. Guessing Game\n")
     guess_level = 1
     attempts = 0
