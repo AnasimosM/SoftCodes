@@ -1,4 +1,4 @@
-# Integer Check
+# String & Integer Check
 
 def get_integer(prompt):
     while True:
