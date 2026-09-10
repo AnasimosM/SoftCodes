@@ -2,6 +2,12 @@
 
 A deployable Python + SQL MVP for neutral tenant-landlord repair documentation and workflow tracking.
 
+
+[![LICENSE](https://img.shields.io/badge/License-All%20Rights%20Reserved-red.svg)](LICENSE)
+[![Usage](https://img.shields.io/badge/Usage-Permission%20Required-orange.svg)](LICENSE)
+[![Modification](https://img.shields.io/badge/Modification-Not%20Allowed-critical.svg)](LICENSE)
+[![Commercial](https://img.shields.io/badge/Commercial-Permission%20Required-orange.svg)](LICENSE)
+
 ## Included
 - Tenant/landlord registration and login
 - Linked property records
