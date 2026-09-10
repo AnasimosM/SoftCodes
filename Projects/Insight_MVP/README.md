@@ -63,4 +63,4 @@ Then open `http://127.0.0.1:8000`.
 - Payments: approved external escrow/banking partner through `services/payments.py`
 
 ## License
-No license is included. Add the commercial/proprietary license you intend to use before distributing the source.
+📄 **[Read the Full Legal Terms → LICENSE](LICENSE)**
