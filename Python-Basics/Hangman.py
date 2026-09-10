@@ -134,7 +134,6 @@ def start_game():
             tries -= 1
 
         if all(letter in guessed_letters for letter in word):
-            print("\n" + display_word(tries))
             print("\nWord: " + display_word(word, guessed_letters))
             print("\n" + "=" * 40)
             print(f"🎉 CONGRATULATIONS! You won! The word was: {word}")
