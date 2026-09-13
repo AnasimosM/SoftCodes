@@ -1,5 +1,5 @@
 # SoftCodes
-Fully Furnished and Finished Programs
+Fully Furnished and Finished Programs 
 
 [![LICENSE](https://img.shields.io/badge/License-All%20Rights%20Reserved-red.svg)](LICENSE)
 [![Usage](https://img.shields.io/badge/Usage-Permission%20Required-orange.svg)](LICENSE)
