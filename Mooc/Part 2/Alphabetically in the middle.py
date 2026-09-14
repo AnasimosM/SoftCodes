@@ -1,7 +1,3 @@
-# letter_1 = "a"
-# letter_2 = "c"
-# letter_3 = "b"
-
 letter_1 = input("1st letter: ")
 letter_2 = input("2nd letter: ")
 letter_3 = input("3rd letter: ")
