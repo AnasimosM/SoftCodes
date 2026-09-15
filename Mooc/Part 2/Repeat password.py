@@ -1,6 +1,6 @@
 password = input("Password: ")
 
-while True:
+while True: 
     password = password.replace(" ", "")
     repeat = input("Repeat Password: ")
     if password == repeat:
