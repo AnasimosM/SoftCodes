@@ -1,4 +1,4 @@
-from math import *
+from math import * 
 
 while True:
     number = int(input("Please type in a number: "))
