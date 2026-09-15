@@ -7,7 +7,7 @@ while True:
             break
     elif year2 % 4 == 0:
         break
-    year2 = year2 + 1
+    year2 = year2 + 1 
 
 print(f"The next leap year after {year} is {year2}")
 
