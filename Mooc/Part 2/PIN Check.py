@@ -6,7 +6,7 @@ while True:  # attempts != 0
     attempts += 1
     if user_input == PIN:
         if attempts > 1:
-            print(f"Correct! It took you {attempts} attempts")
+            print(f"Correct! It took you {attempts} attempts")  
             break
         else:
             print("Correct! It only took you one single attempt!")
