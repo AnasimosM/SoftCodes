@@ -1,4 +1,4 @@
-password = input("Password: ")
+password = input("Password: ") 
 
 while True: 
     password = password.replace(" ", "")
