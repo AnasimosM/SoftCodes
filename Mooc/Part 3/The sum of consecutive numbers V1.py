@@ -1,9 +1,9 @@
 limit = int(input("Limit: "))
 number = 1
-current_value = 0
+current_sum = 0
 
-while current_value < limit:
-    current_value += number
+while current_sum < limit:
+    current_sum += number
     number = number + 1
 
-print(current_value)
+print(current_sum)
