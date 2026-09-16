@@ -18,10 +18,4 @@ print(f"The consecutive sum: {display[:-3]} = {current_value}")
 #     number = number + 1
 #     display += " + " + str(number)
 #
-# print(f"The consecutive sum: {display} = {current_value}")
-
-# while number <= limit:
-#     n = limit - number + 1
-#     number = (n / 2) * (number + limit)
-#
-# print(number)
+# print(f"The consecutive sum: {display} = {current_value}"
