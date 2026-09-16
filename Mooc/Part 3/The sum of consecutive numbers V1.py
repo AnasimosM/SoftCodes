@@ -7,9 +7,3 @@ while current_value < limit:
     number = number + 1
 
 print(current_value)
-
-# while number <= limit:
-#     n = limit - number + 1
-#     number = (n / 2) * (number + limit)
-#
-# print(number)
