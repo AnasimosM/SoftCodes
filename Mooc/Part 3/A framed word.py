@@ -1,7 +1,7 @@
 word = input("Word: ")
 frame = "*" * (6 + len(word))
 middle = "*" + word.center(len(frame) - 2) + "*"
-print(frame)
+print(frame) 
 print(middle)
 print(frame)
 
