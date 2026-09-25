@@ -1,5 +1,5 @@
 def mean(x,y,z):
-    result = float((x + y + z) / 3)
+    result = (x + y + z) / 3 #float identifier is not needed
     print (result)
 
 if __name__ == "__main__":
