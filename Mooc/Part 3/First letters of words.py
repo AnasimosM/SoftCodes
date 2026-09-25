@@ -18,5 +18,16 @@
 # print(f"Count: {count}")
 # print(f"Sentence: {len(sentence)} Index is {len(sentence)-1}")
 # print(f"Letter : {sentence[count]}")
-for word in input("Please type in a sentence: ").split():
-    print(word[0])
+
+
+# for word in input("Please type in a sentence: ").split():
+#     print(word[0])
+
+
+words = str(input("Please type in a sentence: "))
+count = 0
+while count < len(words.split()):
+    first = words.split()
+    print(first[count][0])
+    count += 1
+
